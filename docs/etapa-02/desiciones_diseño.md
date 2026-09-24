@@ -1,14 +1,12 @@
-Para la construcción del diagrama lógico identificamos los siguientes grupos funcionales: 
+Las desiciones tomadas en la etapa de diseño lógico (DER) fueron las siguientes:
 
-•	Productos: En el caso de Productos decidimos que se debe guardar un registro de cada aspecto esencial dentro del contexto de nuestro negocio, haciendo que sea posible comercializarlo con facilidad. También facilitamos su clasificación mediante la tabla Categoría.
-
-•	Personas y roles: Identificamos 3 entidades distintas que participan en nuestro negocio (Cliente, Proveedor y Usuario)
-
-•	Compras: Se llevaron a cabo las tablas para poder gestionar el proceso de compra a proveedores de forma eficiente y respetando la normalización correspondiente hasta la 3FN
-
-•	Ventas: Se llevaron a cabo las tablas para poder gestionar el proceso de venta de nuestros productos de forma eficiente y respetando la normalización correspondiente hasta la 3FN
-
-•	Pagos: Se llevará un registro de los métodos de pago disponibles por el negocio
-Con esta información se construyó un diagrama de P. Chan para representar a las entidades con sus respectivas relaciones
-
-Con respecto a la Entidad Dirección, basamos nuestro dominio en Ventas y compras solo dentro de la ciudad de Corrientes por lo que los datos que nos interesan almacenar son solo "calle" y "altura". Esto fué una restricción en el dominio de nuestro negocio.
+1) Separación de la información común y los roles del sistema
+Se identificó que determinadas entidades del dominio comparten información correspondiente a una persona, como nombre, apellido, DNI, correo, teléfono y dirección. Para evitar la duplicación de estos datos, se centralizó dicha información en la relación “Persona”. A partir de ella se modelaron diferentes especializaciones, dado que cada una representa un rol diferente dentro del sistema y posee atributos y responsabilidades específicas.
+2) Separación entre usuario y rol
+Se decidió no almacenar la descripción del rol directamente en USUARIO, sino representarlo mediante una relación independiente. Esto permite centralizar la definición de los roles disponibles y asociar múltiples usuarios a un mismo rol sin repetir su descripción.
+3) Separación de operaciones y sus detalles
+Tanto las compras como las ventas fueron modeladas diferenciando la información general de la operación de los productos involucrados en ella.
+4) Conservación del precio histórico de las operaciones
+Se decidió almacenar el precio del producto utilizado en cada detalle de compra o venta, además del precio actualmente asociado al producto. Esto permite conservar el valor con el que se realizó una operación independientemente de posteriores modificaciones en el precio del producto.
+5) Normalización
+El modelo fue estructurado procurando alcanzar la Tercera Forma Normal (3FN), evitando grupos repetitivos, dependencias parciales y dependencias transitivas entre atributos no clave.
