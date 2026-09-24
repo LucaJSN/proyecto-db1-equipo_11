@@ -4,9 +4,7 @@
 
 * **RN01**: El sistema contará con dos perfiles de usuario, un administrador y un vendedor.
 * **RN02**: El administrador se encarga de administrar los usuarios.
-
-RN 03: Todo producto tiene una categoría, cada categoría tiene al menos un producto.
-
+* **RN04**: Todo producto tiene una categoría, cada categoría tiene al menos un producto.
 * **RN04**: Una venta es realizada mediante un solo medio de pago.
 * **RN05**: En la venta se registran el vendedor y el cliente.
 * **RN06**: Un cliente tiene al menos una venta asociada.
