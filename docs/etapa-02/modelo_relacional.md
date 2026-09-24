@@ -2,7 +2,7 @@
 
 ## Diagrama
 
-
+<img width="4512" height="1917" alt="Modelo Relacional - Diagrama" src="https://github.com/user-attachments/assets/67566690-9b17-4c36-b834-91c86a9c29d5" />
 
 ## 1. Tablas y Atributos
 
