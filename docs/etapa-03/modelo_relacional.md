@@ -1,5 +1,9 @@
 # Modelo Relacional 
 
+## Diagrama
+
+<img width="3984" height="1614" alt="Diagrama Modelo Relacional" src="https://github.com/user-attachments/assets/ff71f1f7-499c-4b39-8c88-8f8e1f1e49eb" />
+
 ## 1. Tablas y Atributos
 
 * **Persona**:
