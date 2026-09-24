@@ -10,3 +10,5 @@ Para la construcción del diagrama lógico identificamos los siguientes grupos f
 
 •	Pagos: Se llevará un registro de los métodos de pago disponibles por el negocio
 Con esta información se construyó un diagrama de P. Chan para representar a las entidades con sus respectivas relaciones
+
+Con respecto a la Entidad Dirección, basamos nuestro dominio en Ventas y compras solo dentro de la ciudad de Corrientes por lo que los datos que nos interesan almacenar son solo "calle" y "altura". Esto fué una restricción en el dominio de nuestro negocio.
