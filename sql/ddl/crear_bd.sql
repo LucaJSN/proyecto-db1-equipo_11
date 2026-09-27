@@ -1,151 +1,178 @@
-CREATE DATABASE PETSHOPDELLITORAL;
 
 CREATE TABLE CATEGORIA
 (
-  id_categoria INT NOT NULL,
-  nombre_categoria INT NOT NULL,
+  id_categoria INT IDENTITY(1,1) NOT NULL,
+  nombre_categoria VARCHAR(50) NOT NULL,
   estado_categoria INT NOT NULL,
-  fechaCreacion_categoria DATE NOT NULL,
-  CONSTRAINT PK_CATEGORIA PRIMARY KEY (id_categoria)
+  fechaCreacion_categoria DATE NOT NULL DEFAULT GETDATE(),
+  constraint PK_CATEGORIA PRIMARY KEY (id_categoria),
+  CONSTRAINT CK_ESTADO_CATEGORIA CHECK (ESTADO_CATEGORIA IN (1,0))
 );
 
 CREATE TABLE PRODUCTO
 (
-  id_Producto INT NOT NULL,
+  id_Producto INT IDENTITY(1,1) NOT NULL,
   nombre_producto VARCHAR(100) NOT NULL,
   descripcion_producto VARCHAR(100) NOT NULL,
   precio_producto FLOAT NOT NULL,
   stock_producto INT NOT NULL,
   stock_minimo INT NOT NULL,
   precioUnitario_producto FLOAT NOT NULL,
-  fechaCreacion_producto DATE NOT NULL,
+  fechaCreacion_producto DATE NOT NULL DEFAULT GETDATE(),
   estado_producto INT NOT NULL,
   id_categoria INT NOT NULL,
-  CONSTRAINT PK_PRODUCTO PRIMARY KEY (id_Producto)
- 
+  CONSTRAINT PK_PRODUCTO PRIMARY KEY (id_Producto),
+  CONSTRAINT FK_CATEGORIA FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id_categoria),
+  CONSTRAINT CK_PRECIO_UNIT CHECK (precioUnitario_producto > 0),
+  CONSTRAINT CK_STOCK_MIN CHECK (stock_minimo >= 0),
+  CONSTRAINT CK_ESTADO_PRODUCTO CHECK (ESTADO_PRODUCTO IN (1,0))
+
 );
 
 CREATE TABLE Calle
 (
-  id_calle INT NOT NULL,
-  nombre_calle INT NOT NULL,
-  CONSTRAINT PK_CALLE PRIMARY KEY (id_Calle)
+  id_calle INT IDENTITY(1,1) NOT NULL,
+  nombre_calle VARCHAR(50) NOT NULL,
+
+  CONSTRAINT PK_CALLE PRIMARY KEY (id_calle)
 );
 
-CREATE TABLE Dirección
+CREATE TABLE DIRECCION
 (
-  id_direccion INT NOT NULL,
+  id_direccion INT IDENTITY(1,1) NOT NULL,
   altura INT NOT NULL,
   id_calle INT NOT NULL,
   CONSTRAINT PK_DIRECCION PRIMARY KEY (id_direccion),
-  
+  CONSTRAINT FK_CALLE FOREIGN KEY (id_calle) REFERENCES Calle(id_calle),
+  CONSTRAINT CK_ALTURA CHECK(altura >0)
 );
 
 CREATE TABLE PERSONA
 (
-  id_persona INT NOT NULL,
+  id_persona INT IDENTITY(1,1) NOT NULL,
   nombre_persona VARCHAR(100) NOT NULL,
   apellido_persona VARCHAR(100) NOT NULL,
   correo_persona VARCHAR(100) NOT NULL,
-  telefono_persona INT NOT NULL,
-  dni_persona INT NOT NULL,
+  telefono_persona VARCHAR(12) NOT NULL,
+  dni_persona VARCHAR(12) NOT NULL,
   estado_persona INT NOT NULL,
-  fechaCreacion_persona DATE NOT NULL,
+  fechaCreacion_persona DATE NOT NULL DEFAULT GETDATE(),
   id_direccion INT NOT NULL,
-  CONSTRAINT PK_PERSONA PRIMARY KEY (id_persona)
- 
+  CONSTRAINT PK_PERSONA PRIMARY KEY (id_persona),
+  CONSTRAINT FK_DIRECCION FOREIGN KEY (id_direccion) REFERENCES DIRECCION(id_direccion),
+  CONSTRAINT UQ_DNI_PERSONA UNIQUE (dni_persona),
+  CONSTRAINT UQ_CORREO_PERSONA UNIQUE (correo_persona),
+  CONSTRAINT UQ_TELEFONO_PERSONA UNIQUE (telefono_persona),
+  CONSTRAINT CK_ESTADO_PERSONA CHECK (estado_persona IN (1,0))
 );
 
 CREATE TABLE PROVEEDOR
 (
-  id_proveedor INT NOT NULL,
+  id_proveedor INT IDENTITY(1,1) NOT NULL,
   estado_proveedor INT NOT NULL,
   id_persona INT NOT NULL,
-  CONSTRAINT PK_PROVEEDOR PRIMARY KEY (id_proveedor)
- 
+  CONSTRAINT PK_PROVEEDOR PRIMARY KEY (id_proveedor),
+  CONSTRAINT FK_PERSONA FOREIGN KEY (id_persona) REFERENCES PERSONA(id_persona),
+  CONSTRAINT CK_ESTADO_PROVEEDOR CHECK (estado_proveedor IN (1,0))
 );
 
 CREATE TABLE COMPRA_PROVEEDOR
 (
-  id_compra INT NOT NULL,
-  fecha_compra INT NOT NULL,
-  fechaCreacion_compraProveedor DATE NOT NULL,
+  id_compra INT IDENTITY (1,1) NOT NULL,
+  fecha_compra DATE NOT NULL DEFAULT GETDATE(),
+  fechaCreacion_compraProveedor DATE NOT NULL DEFAULT GETDATE(),
   estado_compraProveedor INT NOT NULL,
   id_proveedor INT NOT NULL,
-  CONSTRAINT PK_COMPRA_PROVEEDOR PRIMARY KEY (id_compra)
-  
+  CONSTRAINT PK_COMPRA_PROVEEDOR PRIMARY KEY (id_compra),
+  CONSTRAINT FK_PROVEEDOR FOREIGN KEY (id_proveedor) REFERENCES PROVEEDOR(id_proveedor),
+  CONSTRAINT CK_ESTADO_COMPRA_PROV CHECK (estado_compraProveedor IN (1,0))
 );
 
 CREATE TABLE DETALLE_COMPRA
 (
-  id_DetalleCompra INT NOT NULL,
-  cantidad INT NOT NULL,
+  id_DetalleCompra INT IDENTITY(1,1) NOT NULL,
+  cantidad INT NOT NULL DEFAULT 1,
   precio_unitario FLOAT NOT NULL,
   subtotal_compra FLOAT NOT NULL,
-  fechaCreacion_detalleCompra DATE NOT NULL,
+  fechaCreacion_detalleCompra DATE NOT NULL DEFAULT GETDATE(),
   id_compra INT NOT NULL,
   id_Producto INT NOT NULL,
   CONSTRAINT PK_DETALLE_COMPRA PRIMARY KEY (id_DetalleCompra),
-
+  CONSTRAINT FK_COMPRA FOREIGN KEY (id_compra) REFERENCES COMPRA_PROVEEDOR(id_compra),
+  CONSTRAINT FK_PRODUCTO FOREIGN KEY (id_Producto) REFERENCES PRODUCTO(id_Producto),
+  CONSTRAINT CK_CANTIDAD CHECK(cantidad >0),
+  CONSTRAINT UQ_PRODUCTO_COMPRA UNIQUE(id_Producto, id_compra)
 );
 
 CREATE TABLE ROL
 (
-  id_rol INT NOT NULL,
-  rol_descripcion INT NOT NULL,
-  fechaCreacion_rol DATE NOT NULL,
+  id_rol INT IDENTITY(1,1) NOT NULL,
+  rol_descripcion VARCHAR(100) NOT NULL,
+  fechaCreacion_rol DATE NOT NULL DEFAULT GETDATE(),
   CONSTRAINT PK_ROL PRIMARY KEY (id_rol)
 );
 
 CREATE TABLE USUARIO
 (
-  id_usuario INT NOT NULL,
-  contrasenia_usuario INT NOT NULL,
+  id_usuario INT IDENTITY(1,1) NOT NULL,
+  contrasenia_usuario VARCHAR(50) NOT NULL,
   estado_usuario INT NOT NULL,
   id_rol INT NOT NULL,
   id_persona INT NOT NULL,
-  CONSTRAINT PK_USUARIO PRIMARY KEY (id_usuario)
- 
+  CONSTRAINT PK_USUARIO PRIMARY KEY (id_usuario),
+  CONSTRAINT FK_ROL FOREIGN KEY (id_rol) REFERENCES ROL(id_rol),
+  CONSTRAINT FK_PERSONA FOREIGN KEY (id_persona) REFERENCES PERSONA(id_persona),
+  CONSTRAINT CK_ESTADO_USUARIO CHECK (estado_usuario IN (1,0)),
+  CONSTRAINT CK_CONTRASENIA_MIN CHECK (LEN(contrasenia_usuario) >4)
 );
 
 CREATE TABLE CLIENTE
 (
-  id_cliente INT NOT NULL,
+  id_cliente INT IDENTITY(1,1) NOT NULL,
   estado_cliente INT NOT NULL,
   id_persona INT NOT NULL,
-  CONSTRAINT PK_CLIENTE PRIMARY KEY (id_cliente)
- 
+  CONSTRAINT PK_CLIENTE PRIMARY KEY (id_cliente),
+  CONSTRAINT FK_PERSONA FOREIGN KEY (id_persona) REFERENCES PERSONA(id_persona),
+  CONSTRAINT CK_ESTADO_CLIENTE CHECK (estado_cliente IN (1,0))
 );
 
 CREATE TABLE METODO_PAGO
 (
-  id_metodoPago INT NOT NULL,
+  id_metodoPago INT IDENTITY(1,1) NOT NULL,
   nombre_metodo VARCHAR(100) NOT NULL,
   estado_metodoPago INT NOT NULL,
-  fechaCreacion_metodoPago DATE NOT NULL,
-  CONSTRAINT PK_METODO_PAGO PRIMARY KEY (id_metodoPago)
+  fechaCreacion_metodoPago DATE NOT NULL DEFAULT GETDATE(),
+  CONSTRAINT PK_METODO_PAGO PRIMARY KEY (id_metodoPago),
+  CONSTRAINT CK_ESTADO_METODO_PAGO CHECK (estado_metodoPago IN (1,0))
 );
 
 CREATE TABLE VENTA
 (
-  id_venta INT NOT NULL,
-  fecha_venta INT NOT NULL,
+  id_venta INT IDENTITY(1,1) NOT NULL,
+  fecha_venta INT NOT NULL DEFAULT GETDATE(),
   estado_venta INT NOT NULL,
   id_usuario INT NOT NULL,
   id_metodoPago INT NOT NULL,
   id_cliente INT NOT NULL,
-  CONSTRAINT PK_VENTA PRIMARY KEY (id_venta)
+  CONSTRAINT PK_VENTA PRIMARY KEY (id_venta),
+  CONSTRAINT FK_USUARIO FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
+  CONSTRAINT FK_METODO_PAGO FOREIGN KEY (id_metodoPago) REFERENCES METODO_PAGO(id_metodoPago),
+  CONSTRAINT FK_CLIENTE FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id_cliente),
+  CONSTRAINT CK_ESTADO_VENTA CHECK (estado_venta IN (1,0))
 );
 
 CREATE TABLE DETALLE_VENTA
 (
-  id_detalleVenta INT NOT NULL,
-  cantidad INT NOT NULL,
+  id_detalleVenta INT IDENTITY(1,1) NOT NULL,
+  cantidad INT NOT NULL DEFAULT 1,
   precio FLOAT NOT NULL,
   subtotal_venta FLOAT NOT NULL,
-  fechaCreacion_detalleVenta DATE NOT NULL,
+  fechaCreacion_detalleVenta DATE NOT NULL DEFAULT GETDATE(),
   id_venta INT NOT NULL,
   id_Producto INT NOT NULL,
-  CONSTRAINT PK_DETALLE_VENTA PRIMARY KEY (id_detalleVenta)
- 
+  CONSTRAINT PK_DETALLE_VENTA PRIMARY KEY (id_detalleVenta),
+  CONSTRAINT FK_VENTA FOREIGN KEY (id_venta) REFERENCES VENTA(id_venta),
+  CONSTRAINT FK_PRODUCTO FOREIGN KEY (id_Producto) REFERENCES PRODUCTO(id_Producto),
+  CONSTRAINT CK_CANTIDAD_VENTA CHECK (cantidad > 0),
+  CONSTRAINT UQ_PRODUCTO_VENTA UNIQUE(id_Producto, id_venta)
 );
