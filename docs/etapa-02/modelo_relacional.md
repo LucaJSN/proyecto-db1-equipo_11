@@ -2,7 +2,7 @@
 
 ## Diagrama
 
-<img width="4512" height="1917" alt="Modelo Relacional - Diagrama" src="<img src="DER.png" alt="Modelo Relacional" />" />
+<img width="4512" height="1917" alt="Modelo Relacional - Diagrama" src="<img src="docs/etapa-02/DER.png" />" />
 
 ## 1. Tablas y Atributos
 
