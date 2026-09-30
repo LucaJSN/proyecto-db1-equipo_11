@@ -2,7 +2,7 @@
 
 ## Diagrama
 
-<img width="800" alt="Modelo Relacional - Diagrama" src="DER.png" />
+<img width="800" alt="Modelo Relacional - Diagrama" src="../../DER.png" />
 
 ## 1. Tablas y Atributos
 
