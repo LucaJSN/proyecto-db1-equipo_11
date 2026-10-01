@@ -10,7 +10,7 @@ Cada tabla de nuestra base de datos tiene una clave primaria (PK) simple para id
 
 
 
-# Not Null
+## Not Null
 
 
 
@@ -23,19 +23,11 @@ El siguiente extracto de código SQL demuestra estás dos primeras restricciones
 
 
 ```
-
-CREATE TABLE CALLE
-
-(
-
-&#x20; id\_calle INT IDENTITY(1,1) **NOT NULL**,
-
-&#x20; nombre\_calle VARCHAR(50) NOT NULL,
-
-&#x20; CONSTRAINT PK\_CALLE **PRIMARY KEY** (id\_calle)
-
+CREATE TABLE CALLE(
+  id_calle INT IDENTITY(1,1) NOT NULL,
+  nombre_calle VARCHAR(50) NOT NULL,
+  CONSTRAINT PK_CALLE PRIMARY KEY (id_calle)
 );
-
 ```
 
 
@@ -75,36 +67,19 @@ Para unir dos tablas y garantizar la integridad referencial de los datos, se uti
 El siguiente extracto de código SQL ilustra estás últimas restricciones.
 
 ```
-
-CREATE TABLE DETALLE\_VENTA
-
-(
-
-&#x20; id\_detalleVenta INT IDENTITY(1,1) NOT NULL,
-
-&#x20; cantidad INT NOT NULL DEFAULT 1,
-
-&#x20; precio DECIMAL (10,2) NOT NULL,
-
-&#x20; subtotal\_venta DECIMAL (10,2) NOT NULL,
-
-&#x20; fechaCreacion\_detalleVenta DATE NOT NULL **DEFAULT** GETDATE(),
-
-&#x20; id\_venta INT NOT NULL,
-
-&#x20; id\_Producto INT NOT NULL,
-
-&#x20; CONSTRAINT PK\_DETALLE\_VENTA PRIMARY KEY (id\_detalleVenta),
-
-&#x20; CONSTRAINT FK\_VENTA **FOREIGN KEY** (id\_venta) REFERENCES VENTA(id\_venta),
-
-&#x20; CONSTRAINT FK\_DETALLEVENTA\_PRODUCTO FOREIGN KEY (id\_Producto) REFERENCES PRODUCTO(id\_Producto),
-
-&#x20; CONSTRAINT CK\_CANTIDAD\_VENTA **CHECK** (cantidad > 0),
-
-&#x20; CONSTRAINT UQ\_PRODUCTO\_VENTA **UNIQUE**(id\_Producto, id\_venta)
-
+CREATE TABLE DETALLE_VENTA(
+  id_detalleVenta INT IDENTITY(1,1) NOT NULL,
+  cantidad INT NOT NULL DEFAULT 1,
+  precio DECIMAL (10,2) NOT NULL,
+  subtotal_venta DECIMAL (10,2) NOT NULL,
+  fechaCreacion_detalleVenta DATE NOT NULL DEFAULT GETDATE(),
+  id_venta INT NOT NULL,
+  id_Producto INT NOT NULL,
+  CONSTRAINT PK_DETALLE_VENTA PRIMARY KEY (id_detalleVenta),
+  CONSTRAINT FK_VENTA FOREIGN KEY (id_venta) REFERENCES VENTA(id_venta),
+  CONSTRAINT FK_DETALLEVENTA_PRODUCTO FOREIGN KEY (id_Producto) REFERENCES PRODUCTO(id_Producto),
+  CONSTRAINT CK_CANTIDAD_VENTA CHECK (cantidad > 0),
+  CONSTRAINT UQ_PRODUCTO_VENTA UNIQUE (id_Producto, id_venta)
 );
-
 ```
 
