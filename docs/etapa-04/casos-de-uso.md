@@ -1,3 +1,28 @@
+## Consulta 1: Comprobante o factura de una venta
+*(Consulta que consolide el encabezado y detalle de una venta)*
+
+### Descripción del Caso de Uso
+Permite a la administración mostrar todos los datos de una venta especifica:
+1.  Nro de venta, la fecha de venta, el cliente y el vendedor.
+2.  El subtotal de cada renglón incluyendo el producto comprado y su precio.
+3.  El total de la venta.
+
+Posee un filtro rígido donde se debe aclarar el número de venta para mostrar los detalles correspondientes.
+
+### Tablas Involucradas (JOINs)
+1. **`VENTA (p)`**: Proporciona el número de venta, la fecha y los datos del cliente y del vendedor.
+2. **`DETALLE_VENTA (dv)`**: Proporciona la cantidad y precio del producto comprado.
+
+### Explicación Técnica de la Consulta
+
+1. **Unión de Tablas y Selección con Where:**  
+   Se unen las dos tablas mediante `INNER JOIN`. La cláusula `WHERE v.id_venta = ...` permite seleccionar la venta.
+
+2. **Mostrar datos**  
+Se muestran las columnas requeridas.<br><br>
+La columna total, a diferencia de las demás muestra el total de la venta general por lo que se suma todos los subtotales con la cláusula `SUM` y se utiliza `OVER()` para mostrar el total de la venta pues hace la suma de todos los subtotales.<br><br>
+En la consulta se mantuvo `OVER(PARTITION BY v.id_venta)` pues la misma consulta sin el where funciona para mostrar todas las ventas y sus detalles asociados y en este caso no influye en el rendimiento del sistema.
+
 ## Consulta 3: Consulta de Negocio Avanzada (Producto más Vendido)
 *(Combinación de 3 tablas con JOIN, agregación y filtro dinámico mediante Subconsulta en HAVING)*
 
