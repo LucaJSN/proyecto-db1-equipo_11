@@ -1,6 +1,5 @@
 /\* =====================================================
-PET SHOP DEL LITORAL
-ETAPA V - OPTIMIZACIÓN DE CONSULTAS A TRAVÉS DE ÍNDICES
+OPTIMIZACIÓN DE CONSULTAS A TRAVÉS DE ÍNDICES
 Script: Carga Masiva y Casos de Prueba
 ===================================================== \*/
 
