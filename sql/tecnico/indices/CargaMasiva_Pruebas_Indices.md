@@ -1,14 +1,6 @@
 
 # Script de Carga Masiva y Pruebas de Índices
 =======
-/* ============================================================================== 
-   PET SHOP DEL LITORAL ETAPA V - OPTIMIZACIÓN DE CONSULTAS A TRAVÉS DE ÍNDICES 
-   Script: Carga Masiva y Casos de Prueba
-   ============================================================================== */
-A continuación se detalla el código SQL utilizado para la inserción masiva de datos (simulando operaciones diarias de la tienda y compras a proveedores) y la validación del rendimiento de las consultas mediante los índices en la base de datos `PetShopDelLitoral`.
-
-## Script SQL Completo
-
 ```sql
 USE PetShopDelLitoral;
 GO
