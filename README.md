@@ -26,8 +26,8 @@ Diseño e implementación de una base de datos relacional para un comercio de pr
 [![Etapa 1](https://img.shields.io/badge/ETAPA%201-0F766E?style=for-the-badge)](#etapa-1-relevamiento-y-an%C3%A1lisis)
 [![Etapa 2](https://img.shields.io/badge/ETAPA%202-0E7490?style=for-the-badge)](#etapa-2-dise%C3%B1o-de-la-base-de-datos)
 [![Etapa 3](https://img.shields.io/badge/ETAPA%203-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
-[![Etapa 4](https://img.shields.io/badge/ETAPA%204-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
-[![Etapa 5](https://img.shields.io/badge/ETAPA%205-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
+[![Etapa 4](https://img.shields.io/badge/ETAPA%204-0369A1?style=for-the-badge)](#etapa-4-consultas-y-casos-de-uso)
+[![Etapa 5](https://img.shields.io/badge/ETAPA%205-0369A1?style=for-the-badge)](#etapa-5-implementaci%C3%B3n-de-temas-t%C3%A9cnicos)
 [![Scripts SQL](https://img.shields.io/badge/SCRIPTS%20SQL-4338CA?style=for-the-badge)](#scripts-sql)
 [![Equipo](https://img.shields.io/badge/EQUIPO-334155?style=for-the-badge)](#equipo)
 
@@ -180,7 +180,7 @@ Puesta en marcha del modelo en el motor de base de datos y verificación de su c
 
 ---
 
-### Etapa 4: Consultas y Casos de Uso
+### Etapa 4: Consultas y casos de Uso
 
 ![Etapa](https://img.shields.io/badge/ETAPA-4-0369A1?style=flat-square&labelColor=0C4A6E)
 ![Documentos](https://img.shields.io/badge/DOCUMENTOS-1-0369A1?style=flat-square&labelColor=0C4A6E)
