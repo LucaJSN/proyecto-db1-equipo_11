@@ -17,15 +17,17 @@ Diseño e implementación de una base de datos relacional para un comercio de pr
 
 <br>
 
-![Etapas](https://img.shields.io/badge/ETAPAS-3-0F766E?style=flat-square&labelColor=134E4A)
-![Documentos](https://img.shields.io/badge/DOCUMENTOS-12-0E7490?style=flat-square&labelColor=164E63)
-![Scripts SQL](https://img.shields.io/badge/SCRIPTS%20SQL-2-0369A1?style=flat-square&labelColor=0C4A6E)
+![Etapas](https://img.shields.io/badge/ETAPAS-5-0F766E?style=flat-square&labelColor=134E4A)
+![Documentos](https://img.shields.io/badge/DOCUMENTOS-20-0E7490?style=flat-square&labelColor=164E63)
+![Scripts SQL](https://img.shields.io/badge/SCRIPTS%20SQL-15-0369A1?style=flat-square&labelColor=0C4A6E)
 
 <br>
 
 [![Etapa 1](https://img.shields.io/badge/ETAPA%201-0F766E?style=for-the-badge)](#etapa-1-relevamiento-y-an%C3%A1lisis)
 [![Etapa 2](https://img.shields.io/badge/ETAPA%202-0E7490?style=for-the-badge)](#etapa-2-dise%C3%B1o-de-la-base-de-datos)
 [![Etapa 3](https://img.shields.io/badge/ETAPA%203-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
+[![Etapa 4](https://img.shields.io/badge/ETAPA%204-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
+[![Etapa 5](https://img.shields.io/badge/ETAPA%205-0369A1?style=for-the-badge)](#etapa-3-implementaci%C3%B3n-y-validaci%C3%B3n)
 [![Scripts SQL](https://img.shields.io/badge/SCRIPTS%20SQL-4338CA?style=for-the-badge)](#scripts-sql)
 [![Equipo](https://img.shields.io/badge/EQUIPO-334155?style=for-the-badge)](#equipo)
 
@@ -67,7 +69,9 @@ El trabajo se organiza en tres etapas sucesivas, desde el relevamiento del caso 
 flowchart LR
     A["Etapa 1<br/>Relevamiento<br/>y análisis"] --> B["Etapa 2<br/>Diseño de la<br/>base de datos"]
     B --> C["Etapa 3<br/>Implementación<br/>y validación"]
-    C --> D["Scripts SQL<br/>DDL y DML"]
+    C --> D["Etapa 4<br/>Consultas <br/>y caso de uso"]
+    D --> E["Etapa 5<br/>Temas técnicos"]
+    E --> F["Scripts SQL<br/>DDL y DML"]
 
     classDef e1 fill:#0F766E,stroke:#134E4A,color:#ffffff,stroke-width:2px
     classDef e2 fill:#0E7490,stroke:#164E63,color:#ffffff,stroke-width:2px
@@ -77,7 +81,9 @@ flowchart LR
     class A e1
     class B e2
     class C e3
-    class D e4
+    class D e1
+    class E e2
+    class F e4
 ```
 
 <div align="right">
@@ -174,14 +180,67 @@ Puesta en marcha del modelo en el motor de base de datos y verificación de su c
 
 ---
 
+### Etapa 4: Consultas y Casos de Uso
+
+![Etapa](https://img.shields.io/badge/ETAPA-4-0369A1?style=flat-square&labelColor=0C4A6E)
+![Documentos](https://img.shields.io/badge/DOCUMENTOS-1-0369A1?style=flat-square&labelColor=0C4A6E)
+
+Creación de factura de venta, reporte agregado y consultas sobre el negocio.
+| Documento | Contenido |
+|:--|:--|
+| [Casos de uso](docs/etapa-04/casos-de-uso.md) | Informe de casos de usos sobre las consultas e informes. |
+
+
+<div align="right">
+
+[![Volver al inicio](https://img.shields.io/badge/VOLVER%20AL%20INICIO-334155?style=flat-square)](#inicio)
+
+</div>
+
+---
+
+### Etapa 5: Implementación de temas técnicos
+
+![Etapa](https://img.shields.io/badge/ETAPA-5-0369A1?style=flat-square&labelColor=0C4A6E)
+![Documentos](https://img.shields.io/badge/DOCUMENTOS-5-0369A1?style=flat-square&labelColor=0C4A6E)
+
+Investigación de componentes, mecanismos y estructuras de la base de datos.
+
+| Documento | Contenido |
+|:--|:--|
+| [Procedimientos y funciones](docs/etapa-05/Procedimientos_funciones.md) | Informe sobre procedimientos y funciones almacenadas |
+| [Transacciones](docs/etapa-05/informe_de_transacciones.md) | Informe sobre el manejo de transacciones |
+| [Triggers](docs/etapa-05/Trigger.md) | Informe de triggers para hacer auditorías |
+| [Seguridad](docs/etapa-05/Seguridad.md) | Informe de seguridad por usuarios y roles |
+| [Índices](docs/etapa-05/Optimizacion_indices.md) | Informe sobre la optimización mediante índices |
+
+<div align="right">
+
+[![Volver al inicio](https://img.shields.io/badge/VOLVER%20AL%20INICIO-334155?style=flat-square)](#inicio)
+
+</div>
+
+---
+
+
 ## Scripts SQL
 
-![Scripts](https://img.shields.io/badge/SCRIPTS-2-4338CA?style=flat-square&labelColor=312E81)
+![Scripts](https://img.shields.io/badge/SCRIPTS-12-4338CA?style=flat-square&labelColor=312E81)
 
 | Orden | Script | Descripción |
 |:--:|:--|:--|
 | 1 | [DDL: Data Definition Language](sql/ddl/crear_bd.sql) | Creación de la base de datos, tablas y restricciones |
 | 2 | [DML: Data Manipulation Language](sql/dml/PetShopDelLitoral.sql) | Inserción y manipulación de datos |
+| 3 | [Comprobante de venta](sql/consultas/comprobante-venta.sql) | Genera una factura de venta |
+| 4 | [Reporte de ventas por vendedor](sql/consultas/reporte-vendedor.sql) | Muestra los datos del vendedor, su total de ventas en un plazo de fechas y lo generado por ello |
+| 5 | [Consulta avanzada: reporte de producto](docs/etapa-04/consulta-avanzada.md) | Muestra los datos del producto más vendido |
+| 6 | [Consulta avanzada: reporte de categoría](docs/etapa-04/consulta-ventas-por-categoria.md) | Muestra la cantidad ventas por cada categoría |
+| 7 | [Carpeta de procedimientos almacenados](sql/tecnico/procedimientos) | Subdirectorio con los procedimientos almacenados implementados |
+| 8 | [Carpeta de funciones almacenadas](sql/tecnico/funciones) | Subdirectorio con las funciones almacenadas implementadas |
+| 9 | [Transacción](sql/tecnico/transacciones/Transaccion_Registrar_Venta.sql) | Transacción para registrar una venta |
+| 10 | [Trigger](sql/tecnico/triggers/TriggerModificacionProducto.sql) | Trigger de auditoria para productos |
+| 11 | [Seguridad](sql/tecnico/seguridad/seguridad_por_roles.md) | Creación de credenciales para usuarios y roles |
+| 12 | [Índices](sql/tecnico/indices/CargaMasiva_Pruebas_Indices.md) | Uso de índices para la optimización de consultas |
 
 <div align="right">
 
@@ -217,10 +276,14 @@ proyecto-db1-equipo_11
 ├── docs
 │   ├── etapa-01     Descripción, alcance, reglas de negocio y decisiones
 │   ├── etapa-02     Modelo conceptual, relacional y normalización
-│   └── etapa-03     Implementación, integridad y pruebas
+│   ├── etapa-03     Implementación, integridad y pruebas
+│   ├── etapa-04     Consultas y casos de uso
+│   └── etapa-05     Implementación de temas técnicos
 ├── sql
 │   ├── ddl          Scripts de definición de datos
-│   └── dml          Scripts de manipulación de datos
+│   ├── dml          Scripts de manipulación de datos
+│   ├── consultas    Scrips de consultas e informes
+│   └── tecnico      Scrips de temas técnicos
 ├── DER.png          Diagrama Entidad-Relación
 └── README.md
 ```
