@@ -4,6 +4,49 @@
 ```sql
 USE PetShopDelLitoral;
 GO
+--creacion de indices
+/* 1. Productos filtrados por categoría */
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE name = 'IX_PRODUCTO_id_categoria'
+      AND object_id = OBJECT_ID('dbo.PRODUCTO')
+)
+BEGIN
+    CREATE NONCLUSTERED INDEX IX_PRODUCTO_id_categoria
+    ON dbo.PRODUCTO (id_categoria);
+END;
+GO
+
+/* 4. Detalles de una venta */
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE name = 'IX_DETALLE_VENTA_id_venta'
+      AND object_id = OBJECT_ID('dbo.DETALLE_VENTA')
+)
+BEGIN
+    CREATE NONCLUSTERED INDEX IX_DETALLE_VENTA_id_venta
+    ON dbo.DETALLE_VENTA (id_venta)
+    INCLUDE (id_Producto, cantidad, precio, subtotal_venta);
+END;
+GO
+
+/* 5. Detalles de una compra a proveedor */
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE name = 'IX_DETALLE_COMPRA_id_compra'
+      AND object_id = OBJECT_ID('dbo.DETALLE_COMPRA')
+)
+BEGIN
+    CREATE NONCLUSTERED INDEX IX_DETALLE_COMPRA_id_compra
+    ON dbo.DETALLE_COMPRA (id_compra)
+    INCLUDE (id_Producto, cantidad, precio_unitario, subtotal_compra);
+END;
+GO
+
+
 
 SET NOCOUNT ON;
 GO
