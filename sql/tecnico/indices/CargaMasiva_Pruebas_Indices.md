@@ -18,7 +18,7 @@ BEGIN
 END;
 GO
 
-/* 4. Detalles de una venta */
+/* 2. Detalles de una venta */
 IF NOT EXISTS (
     SELECT 1
     FROM sys.indexes
@@ -32,7 +32,7 @@ BEGIN
 END;
 GO
 
-/* 5. Detalles de una compra a proveedor */
+/* 3. Detalles de una compra a proveedor */
 IF NOT EXISTS (
     SELECT 1
     FROM sys.indexes
