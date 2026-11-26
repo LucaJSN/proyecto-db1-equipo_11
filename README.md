@@ -297,7 +297,7 @@ proyecto-db1-equipo_11
 | Integrante | Rol | Perfil |
 |:--|:--|:--|
 | Ibarra, Samuel | Integrante | [@samuelibarra334-ai](https://github.com/samuelibarra334-ai) |
-| Recalde, Daniela| Integrante | [@daniiii1222](https://github.com/daniiii1222) |
+| Recalde, Daniela| Integrante | [@DanielaRecalde](https://github.com/DanielaRecalde) |
 | Saucedo, Luca | Integrante | [@LucaJSN](https://github.com/LucaJSN) |
 | Soto, Lourdes| Integrante | [@LourdesSoto](https://github.com/LourdesSoto) |
 
